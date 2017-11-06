@@ -106,12 +106,12 @@ unsigned int ali_size(array_list_int ali){
 int ali_find(array_list_int ali, int element){
   int first = 0;
   int last = ali->size - 1;
-  middle = (first+last)/2;
+  int middle = (first+last)/2;
 
   while (first <= last) {
      if (ali->a[middle] < element)
         first = middle + 1;
-     else if (ali->a[middle] == search) {
+     else if (ali->a[middle] == element) {
         return middle;
         break;
      }
@@ -121,6 +121,8 @@ int ali_find(array_list_int ali, int element){
   }
   if (first > last)
     return -1;
+  else
+    return middle;
 }
 
 /**
@@ -145,9 +147,11 @@ int ali_insert_at(array_list_int ali, int index, int value){
  */
 int ali_remove_from(array_list_int ali, int index){
   int size = ali->size-1;
-  if (index>=0 && index<=size){
-    while(index < size)
-      ali->a[index] = ali->[++index];
+  if(index>=0 && index<=size){
+    while(index < size){
+      ali->a[index] = ali->a[index+1];
+      index++;
+    }
     ali->size = size;
   }
   return ali->size;
