@@ -40,7 +40,7 @@ int ali_realloc(array_list_int ali){
   ali = new_ali;
   ali_destroy(new_ali);
 
-  return 0;
+  return 1;
 }
 
 
@@ -134,6 +134,12 @@ int ali_insert_at(array_list_int ali, int index, int value){
  * TODO:
  */
 int ali_remove_from(array_list_int ali, int index){
+  int size = ali->size-1;
+  if (index>=0 && index<=size){
+    while(index < size)
+      ali->a[index] = ali->[++index];
+    ali->size = size;
+  }
   return ali->size;
 }
 
