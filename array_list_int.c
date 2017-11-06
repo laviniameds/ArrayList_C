@@ -25,14 +25,20 @@ int ali_check_type(array_list_int ali){
 /* Increase capacity size of the array_list_int internal storage */
 int ali_realloc(array_list_int ali){
 
-  array_list_int new_ali = ali_create();// cria um novo
-  new_ali->capacity = ali->capacity + 1; //aumenta a capacidade para o size de ali + 1
+  int size = ali->size;
+
+  array_list_int new_ali = (array_list_int)malloc(sizeof(struct array_list_int));
+  new_ali->a = (int*)malloc(sizeof(int)*(size+1));
+  new_ali->size=size;
+  new_ali->capacity=size+1;
+  new_ali->magic=MAGIC;
+
   int i;
-  for(i=0;i<ali->capacity;i++)
+  for(i=0;i<size;i++)
     new_ali->a[i]=ali->a[i];
-  new_ali->a[new_ali->capacity-1] = 0;//coloca o ultimo elemento como 0
 
   ali = new_ali;
+  ali_destroy(new_ali);
 
   return 0;
 }
@@ -44,7 +50,7 @@ int ali_realloc(array_list_int ali){
 
 /* creates new instance of a dynamic array */
 array_list_int ali_create(){
-  array_list_int ali= (array_list_int)malloc(sizeof(struct array_list_int));
+  array_list_int ali = (array_list_int)malloc(sizeof(struct array_list_int));
   ali->a = (int*)malloc(sizeof(int)*4);
   ali->size=0;
   ali->capacity=4;
