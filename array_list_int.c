@@ -131,9 +131,10 @@ unsigned int ali_capacity(array_list_int ali){
 
 
 /**
- * TODO: */
+ * returns the percent occupation inside the array;
+ */
 double ali_percent_occuped(array_list_int ali){
-  return 0.0;
+  return ((ali->size)*100)/(ali->capacity);
 }
 
 /* Release memory used by the struct and invalidate it. */
