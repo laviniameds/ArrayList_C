@@ -66,13 +66,13 @@ unsigned int ali_push_back(array_list_int ali, int i){
 
 /* Removes last element of dynamic array 'ali'
  *
- * PROBLEMA: Quando ali não for um ponteiro válido??? Resposta: ele retorna 0;
+ * PROBLEMA: Quando ali não for um ponteiro válido??? Resposta: ele retorna -1;
  */
 unsigned int ali_pop_back(array_list_int ali){
   if (!ali_check_type(ali))
-    return 0;
-if (ali->size == 0)
-    return 0;
+    return -1;
+  if (ali->size == 0)
+      return 0;
   return --(ali->size);
 }
 
