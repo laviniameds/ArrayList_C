@@ -27,14 +27,14 @@ int ali_realloc(array_list_int ali){
 
   array_list_int new_ali = ali_create();// cria um novo
   new_ali->capacity = ali->capacity + 1; //aumenta a capacidade para o size de ali + 1
-
   int i;
   for(i=0;i<ali->capacity;i++)
     new_ali->a[i]=ali->a[i];
-
   new_ali->a[new_ali->capacity-1] = 0;//coloca o ultimo elemento como 0
 
-  return 0; 
+  ali = new_ali;
+
+  return 0;
 }
 
 
