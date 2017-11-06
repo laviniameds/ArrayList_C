@@ -66,7 +66,7 @@ unsigned int ali_push_back(array_list_int ali, int i){
 
 /* Removes last element of dynamic array 'ali'
  *
- * PROBLEMA: Quando ali não for um ponteiro válido???
+ * PROBLEMA: Quando ali não for um ponteiro válido??? Resposta: ele retorna 0;
  */
 unsigned int ali_pop_back(array_list_int ali){
   if (!ali_check_type(ali))
@@ -86,10 +86,26 @@ unsigned int ali_size(array_list_int ali){
 
 
 /*
- * TODO:
+ * Find element inside array using binary search; if it can't be found, returns -1
 */
 int ali_find(array_list_int ali, int element){
-  return -1;
+  int first = 0;
+  int last = (ali->size) - 1;
+  middle = (first+last)/2;
+
+  while (first <= last) {
+     if (ali->a[middle] < element)
+        first = middle + 1;
+     else if (ali->a[middle] == search) {
+        return middle;
+        break;
+     }
+     else
+        last = middle - 1;
+     middle = (first + last)/2;
+  }
+  if (first > last)
+    return -1;
 }
 
 /**
