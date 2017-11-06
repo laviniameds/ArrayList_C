@@ -124,14 +124,24 @@ int ali_find(array_list_int ali, int element){
 }
 
 /**
- * TODO:
+ *  returns the value that was inserted;
  */
 int ali_insert_at(array_list_int ali, int index, int value){
-  return 0;
+  if (index>=0 && index<ali->size){
+    ali_realloc(ali);
+    int size = ali->size-1;
+    while(size >= index){
+      if(size == index) ali->a[size] = value;
+      else ali->a[size] = ali->a[size-1];
+      size--;
+    }
+    return value;
+  }
+  return -1;
 }
 
 /**
- * TODO:
+ * return the new size after the removing;
  */
 int ali_remove_from(array_list_int ali, int index){
   int size = ali->size-1;
