@@ -24,8 +24,17 @@ int ali_check_type(array_list_int ali){
 
 /* Increase capacity size of the array_list_int internal storage */
 int ali_realloc(array_list_int ali){
-  /* TODO: */
-  return 0; /* Realloc could not allocate new memory */
+
+  array_list_int new_ali = ali_create();// cria um novo
+  new_ali->capacity = ali->capacity + 1; //aumenta a capacidade para o size de ali + 1
+
+  int i;
+  for(i=0;i<ali->capacity;i++)
+    new_ali->a[i]=ali->a[i];
+
+  new_ali->a[new_ali->capacity-1] = 0;//coloca o ultimo elemento como 0
+
+  return 0; 
 }
 
 
@@ -90,7 +99,7 @@ unsigned int ali_size(array_list_int ali){
 */
 int ali_find(array_list_int ali, int element){
   int first = 0;
-  int last = (ali->size) - 1;
+  int last = ali->size - 1;
   middle = (first+last)/2;
 
   while (first <= last) {
@@ -134,7 +143,7 @@ unsigned int ali_capacity(array_list_int ali){
  * returns the percent occupation inside the array;
  */
 double ali_percent_occuped(array_list_int ali){
-  return ((ali->size)*100)/(ali->capacity);
+  return (ali->size*100)/(ali->capacity);
 }
 
 /* Release memory used by the struct and invalidate it. */
