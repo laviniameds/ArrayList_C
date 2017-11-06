@@ -123,9 +123,10 @@ int ali_remove_from(array_list_int ali, int index){
 }
 
 /**
- * TODO: */
+ * returns array capacity;
+ */
 unsigned int ali_capacity(array_list_int ali){
-  return 0;
+  return ali->capacity;
 }
 
 
