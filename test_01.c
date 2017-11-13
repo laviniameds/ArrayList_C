@@ -5,7 +5,7 @@
 int main(){
   array_list_int a1 = ali_create();
   int i;
-  for (i=0; i < 8; ++i)
+  for (i=0; i < 10; ++i)
     ali_push_back(a1,i+1);
   printf("Tamanho de a1: %d\n",ali_size(a1));
   printf("a1 = { ");
