@@ -26,7 +26,7 @@ int ali_check_type(array_list_int ali){
 int ali_realloc(array_list_int ali){
   int size_antigo = ali->size;
   int *antigo = ali->a;
-  int *a = (int*)malloc(sizeof(int)*(size_antigo+1));
+  int *a = (int*)malloc(sizeof(int)*(size_antigo+size_antigo));
   int i;
   for(i=0;i<size_antigo;i++)
     a[i]=ali->a[i];
@@ -65,9 +65,12 @@ int ali_get(array_list_int ali, int index){
 unsigned int ali_push_back(array_list_int ali, int i){
   if (!ali_check_type(ali))
     return 0;
-  if (ali->size == ali->capacity)
+
+  if(ali_percent_occuped(ali) >= 50.00)
+    ali_realloc(ali);
+  /*if (ali->size == ali->capacity)
     if (!ali_realloc(ali))
-      return ali->size;
+      return ali->size;*/
   ali->a[ali->size++]=i;
   return ali->size;
 }
