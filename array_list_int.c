@@ -24,22 +24,15 @@ int ali_check_type(array_list_int ali){
 
 /* Increase capacity size of the array_list_int internal storage */
 int ali_realloc(array_list_int ali){
-
-  int size = ali->size;
-
-  array_list_int new_ali = (array_list_int)malloc(sizeof(struct array_list_int));
-  new_ali->a = (int*)malloc(sizeof(int)*(size+1));
-  new_ali->size=size;
-  new_ali->capacity=size+1;
-  new_ali->magic=MAGIC;
-
+  int size_antigo = ali->size;
+  int *antigo = ali->a;
+  int *a = (int*)malloc(sizeof(int)*(size_antigo+1));
   int i;
-  for(i=0;i<size;i++)
-    new_ali->a[i]=ali->a[i];
-
-  ali = new_ali;
-  ali_destroy(new_ali);
-
+  for(i=0;i<size_antigo;i++)
+    a[i]=ali->a[i];
+  ali->a = a;
+  ali->capacity = (ali->size)+1;
+  free(antigo);
   return 1;
 }
 
