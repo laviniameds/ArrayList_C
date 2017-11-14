@@ -28,6 +28,7 @@ int ali_realloc(array_list_int ali){
   int *antigo = ali->a;
   int *a = (int*)malloc(sizeof(int)*(size_antigo*2));
   int i;
+  
   for(i=0;i<size_antigo;i++)
     a[i]=ali->a[i];
   ali->a = a;
@@ -66,9 +67,10 @@ unsigned int ali_push_back(array_list_int ali, int i){
   if (!ali_check_type(ali))
     return 0;
 
-  if(ali_percent_occuped(ali) >= 50.00)
+  if(ali_percent_occuped(ali) >= 99.00)
     ali_realloc(ali);
-  /*if (ali->size == ali->capacity)
+/*  if (ali->size == ali->capacity)
+    ali_realloc(ali);
     if (!ali_realloc(ali))
       return ali->size;*/
   ali->a[ali->size++]=i;
@@ -76,8 +78,6 @@ unsigned int ali_push_back(array_list_int ali, int i){
 }
 
 /* Removes last element of dynamic array 'ali'
- *
- * PROBLEMA: Quando ali não for um ponteiro válido??? Resposta: ele retorna -1;
  */
 unsigned int ali_pop_back(array_list_int ali){
   if (!ali_check_type(ali))
@@ -100,7 +100,7 @@ unsigned int ali_size(array_list_int ali){
  * Find element inside array using binary search; if it can't be found, returns -1
 */
 int ali_find(array_list_int ali, int element){
-  int first = 0;
+  /*int first = 0;
   int last = ali->size - 1;
   int middle = (first+last)/2;
 
@@ -118,7 +118,7 @@ int ali_find(array_list_int ali, int element){
   if (first > last)
     return -1;
   else
-    return middle;
+    return middle;*/
 }
 
 /**
