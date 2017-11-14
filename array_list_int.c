@@ -28,12 +28,16 @@ int ali_realloc(array_list_int ali){
   int *antigo = ali->a;
   int *a = (int*)malloc(sizeof(int)*(size_antigo*2));
   int i;
-  
+
+  if(a == 0)
+    return 0;
+
   for(i=0;i<size_antigo;i++)
     a[i]=ali->a[i];
   ali->a = a;
   ali->capacity = (ali->size)*2;
   free(antigo);
+
   return 1;
 }
 
