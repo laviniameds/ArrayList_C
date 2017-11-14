@@ -104,25 +104,11 @@ unsigned int ali_size(array_list_int ali){
  * Find element inside array using binary search; if it can't be found, returns -1
 */
 int ali_find(array_list_int ali, int element){
-  /*int first = 0;
-  int last = ali->size - 1;
-  int middle = (first+last)/2;
-
-  while (first <= last) {
-     if (ali->a[middle] < element)
-        first = middle + 1;
-     else if (ali->a[middle] == element) {
-        return middle;
-        break;
-     }
-     else
-        last = middle - 1;
-     middle = (first + last)/2;
-  }
-  if (first > last)
-    return -1;
-  else
-    return middle;*/
+  int i;
+  for(i=0;i<ali->size;i++)
+    if(ali->a[i] == element)
+      return i;
+  return -1;
 }
 
 /**
@@ -130,7 +116,10 @@ int ali_find(array_list_int ali, int element){
  */
 int ali_insert_at(array_list_int ali, int index, int value){
   if (index>=0 && index<ali->size){
-    ali_realloc(ali);
+
+    if(ali_percent_occuped(ali) >= 99.00)
+      ali_realloc(ali);
+
     int size = ali->size-1;
     while(size >= index){
       if(size == index) ali->a[size] = value;
