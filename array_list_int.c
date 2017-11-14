@@ -26,12 +26,12 @@ int ali_check_type(array_list_int ali){
 int ali_realloc(array_list_int ali){
   int size_antigo = ali->size;
   int *antigo = ali->a;
-  int *a = (int*)malloc(sizeof(int)*(size_antigo+size_antigo));
+  int *a = (int*)malloc(sizeof(int)*(size_antigo*2));
   int i;
   for(i=0;i<size_antigo;i++)
     a[i]=ali->a[i];
   ali->a = a;
-  ali->capacity = (ali->size)+1;
+  ali->capacity = (ali->size)*2;
   free(antigo);
   return 1;
 }
