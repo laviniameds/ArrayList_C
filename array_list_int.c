@@ -35,12 +35,11 @@ int ali_realloc(array_list_int ali){
   for(i=0;i<size_antigo;i++)
     a[i]=ali->a[i];
   ali->a = a;
-  ali->capacity = (ali->size)*2;
+  ali->capacity=(ali->size)*2;
   free(antigo);
 
   return 1;
 }
-
 
 /* External (public) functions.
  * + Defined in array_list_int.h file
@@ -143,6 +142,9 @@ int ali_remove_from(array_list_int ali, int index){
     }
     ali->size = size;
   }
+  if(ali_percent_occuped(ali) <= 25.00)
+    ali_realloc(ali);
+
   return ali->size;
 }
 
