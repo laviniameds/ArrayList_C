@@ -72,10 +72,7 @@ unsigned int ali_push_back(array_list_int ali, int i){
 
   if(ali_percent_occuped(ali) >= 99.00)
     ali_realloc(ali);
-/*  if (ali->size == ali->capacity)
-    ali_realloc(ali);
-    if (!ali_realloc(ali))
-      return ali->size;*/
+    
   ali->a[ali->size++]=i;
   return ali->size;
 }
